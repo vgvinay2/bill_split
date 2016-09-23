@@ -1,0 +1,17 @@
+<div class="form-group row">   
+   <label class="form-check-inline"> User Name
+    <%= f.select(:user_name,["Amar","Akbar","Anthony"],{:prompt=>"Select User Name"}) %>
+   <%#= f.text_field :user_name,placeholder: "Enter name" %>
+ </label>
+   <label class="form-check-inline">Paid 
+    <%= f.text_field :paid,placeholder: "Enter Paid Money" %>
+  </label>
+<%= link_to_remove_permission_fields "remove", f %>
+</div>
+    
+<script>
+$(document).ready(function(){
+  $('.label_text').text("");
+});
+</script>
+

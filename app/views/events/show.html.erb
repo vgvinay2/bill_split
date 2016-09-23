@@ -1,0 +1,23 @@
+ <div class="container">
+  <div class="row">
+   <div class="col-sm-12 col-md-12">
+    <h2> Event <%= @event.event_name.try(:camelize) %>   <%= @event.location%> </h2>
+    <div class="row placeholders">
+     <% @event.payments.each do |payment| %>
+     <div class="col-xs-6 col-sm-3 placeholder">
+      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-fluid" alt="Generic placeholder thumbnail">
+      <h4>Name:  <%= payment.user_name.camelize %></h4>
+      <span class="text-muted">Paid Balence: <%= payment.paid %></span></span>
+      <h4>Per user bill: <%=  (avg_amount @event).round(2) %></h4>       
+      <h4><%= payment.user_name.camelize %> You have to <%= avg_amount(@event) - payment.paid >= 0 ? 'pay' : 'take'%> <%=  (avg_amount(@event) - payment.paid).abs.round(2) %></h4>
+    </div>
+    <% end %>
+  </div>
+</div>
+<div class="pull-right">
+  <h2>Total Payment: <%= (total_amout @event).round(2) %><br>
+    <h2>Per user payment: <%= (avg_amount @event).round(2) %></h2>
+  </h2>
+</div>
+</div>
+</div>

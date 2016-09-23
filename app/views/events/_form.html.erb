@@ -1,0 +1,31 @@
+<div class="container">
+  <%= form_for(@event) do |ff| %>
+  <div class="form-group row">
+   <label for="inputEmail3" class="col-sm-2 col-form-label">Event Name</label>
+   <div class="col-sm-10">
+   <%= ff.select(:event_name,["Breakfast","Lunch","Snacks","Dinner"],{:prompt=>"Select Event Name"})  %>
+  </div>
+</div>
+<div class="form-group row">
+  <label for="inputPassword3" class="col-sm-2 col-form-label">Location</label>
+  <div class="col-sm-10">
+    <%= ff.text_field :location, placeholder: "Location" %>
+  </div>
+</div>
+<% unless params[:action]=="edit" %>
+<div class="user-edit-form-right addpermission">
+  <%= link_to_add_permission "click here to create more Payment for friends/users ", ff, :payments %>
+</div>
+<% end %>
+<div class="addfunction admin-edit-form-row">
+  <%= ff.fields_for :payments, @event.payments_for_form do |builder| %>
+  <div class='form-group plan-feature-lists'> <%= render 'payment_fields', :f => builder %></div>
+  <% end %>
+</div>
+<div class="form-group row">
+  <div class="offset-sm-2 col-sm-10">
+    <button type="submit" class="btn btn-primary">Cretae Event</button>
+  </div>
+</div>
+<% end %>
+</div>

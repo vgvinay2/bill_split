@@ -1,0 +1,29 @@
+<div class="container">
+<h1>Listing Events</h1>
+<h2><%= link_to 'Create New Event', new_event_path,class: "pull-right" %></h2>
+<table class="table table-hover">
+  <thead>
+    <tr>
+       <th>Event No</th>
+       <th>Event name</th>
+      <th>Location</th>
+      <th>Date</th>
+      <th colspan="3">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+     <% @events.each_with_index do |event,index| %>
+    <tr>
+      <th scope="row"> &nbsp; <%= index+1%></th>
+      <td> <%= event.event_name.try(:camelize) %></td>
+      <td ><%= event.location.try(:camelize) %></td>
+      <td><%= event.created_at.strftime("Created on %b %d %Y") %></td>
+      
+        <td><%= link_to 'Show', event %>|
+        <%#= link_to 'Edit', edit_event_path(event) %>|
+        <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>
+</div>
